@@ -48,6 +48,11 @@ body {
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    transition: box-shadow 0.1s ease-in-out;
+  }
+
+  .search-btn:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   }
   
   .weather-info {
