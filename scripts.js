@@ -23,7 +23,7 @@ const getWeatherData = async (lat = 38.830391, lon = -77.196370) /* Default City
 const displayWeatherData = (cityObject) => {
     const tempUnit = units === 'imperial' ? 'F' : 'C';
     const windUnit = units === 'imperial' ? 'MPH' : 'KPH'; 
-    cityName.textContent = cityObject.name;
+    cityName.textContent = `${cityObject.name} (${cityObject.sys.country})`;
     temperature.textContent = `${cityObject.main.temp}° ${tempUnit}`;
     humidity.textContent = `${cityObject.main.humidity}%`;
     wind.textContent = `${cityObject.wind.speed} ${windUnit}`;
