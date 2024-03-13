@@ -62,11 +62,11 @@ function toggleLoad(isLoading) {
     const weatherInfo = document.querySelector('.weather-info');
 
     if (isLoading) {
-        loadingElement.style.display = 'block';
-        weatherInfo.style.display = 'none';
+        loadingElement.classList.add('show');
+        weatherInfo.classList.add('hide');
     } else {
-        loadingElement.style.display = 'none';
-        weatherInfo.style.display = 'block';
+        loadingElement.classList.remove('show');
+        weatherInfo.classList.remove('hide');
     }
 }
 
