@@ -2,6 +2,7 @@
 const apiKey = '9c69404b250eef98baee356685d95287';
 
 // Grab from DOM
+const weatherIcon = document.querySelector('.weather-icon');
 const cityName = document.querySelector('.city-name');
 const temperature = document.querySelector('.temp-value');
 const humidity = document.querySelector('.humidity-value');
@@ -52,7 +53,35 @@ const displayWeatherData = (cityObject) => {
     temperature.textContent = `${cityObject.main.temp}° ${tempUnit}`;
     humidity.textContent = `${cityObject.main.humidity}%`;
     wind.textContent = `${cityObject.wind.speed} ${windUnit}`;
+    setWeatherIcon(cityObject.weather[0]);
 }
+
+const setWeatherIcon = (weather) => {
+    console.log(weather);
+    switch (weather.main) {
+        case 'Clear':
+            weatherIcon.src = `/icons/clear.svg`;
+            break;
+        case 'Clouds':
+            weatherIcon.src = `icons/clouds.svg`;
+            break;
+        case 'Rain':
+            weatherIcon.src = `icons/rain.svg`;
+            break;
+        case 'Drizzle':
+            weatherIcon.src = `icons/drizzle.svg`;
+            break;
+        case 'Thunderstorm':
+            weatherIcon.src = `icons/thunderstorm.svg`;
+            break;
+        case 'Snow':
+            weatherIcon.src = `icons/snow.svg`;
+            break;
+        default:
+            weatherIcon.src = `icons/haze.svg`;
+            break;
+    }
+};
 
 const getCoords = async (input) => {
     toggleLoad(true);
@@ -61,7 +90,6 @@ const getCoords = async (input) => {
     );
     const data = await res.json();
     toggleLoad(false);
-    console.log(data);
     if (!data || data.length === 0) {
         //TODO: This alert is annoying, move to DOM
         alert('Invalid Location!');
@@ -70,7 +98,7 @@ const getCoords = async (input) => {
     localStorage.setItem('defaultCity', input);
     currentCity = input;
     //* Pick top choice
-    console.log(data);
+    //console.log(data);
     getWeatherData(data[0].lat, data[0].lon);
 }
 
