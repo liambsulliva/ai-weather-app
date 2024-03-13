@@ -5,10 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
 </head>
 <body>
   <div class="container">
-    <h1>Weather 🌤️</h1>    
+    <div class="header-container">
+      <h1>Weather 🌤️</h1>
+      <label class="checkbox">
+        <input class='toggle-checkbox' type='checkbox'></input>
+        <div class='toggle-slot'>
+          <div class='farenheight-icon-wrapper'>
+            <div class="farenheight-icon"></div>
+          </div>
+          <div class='toggle-button'></div>
+          <div class='celcius-icon-wrapper'>
+            <div class="celcius-icon"></div>
+          </div>
+        </div>
+      </label>
+    </div>
     <div class="weather-card">
       <input type="text" placeholder="Enter city name" class="city-input">
       <button class="search-btn">Search</button>
