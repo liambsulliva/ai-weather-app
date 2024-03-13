@@ -1,5 +1,5 @@
 // Free Student Tier ;)
-const apiKey = '9c69404b250eef98baee356685d95287'
+const apiKey = '9c69404b250eef98baee356685d95287';
 
 // Grab from DOM
 const cityName = document.querySelector('.city-name');
@@ -7,15 +7,21 @@ const temperature = document.querySelector('.temp-value');
 const humidity = document.querySelector('.humidity-value');
 const wind = document.querySelector('.wind-value');
 
+// Local Storage Setup
+const unitSwitcher = document.querySelector('.toggle-checkbox');
 let currentCity = localStorage.getItem('defaultCity');
 let units = localStorage.getItem('units');
 if (units === null) {
     units = 'imperial';
 }
+if (units === 'metric') {
+    unitSwitcher.checked = true;
+}
 if (currentCity === null) {
     currentCity = 'Annandale';
 }
-const unitSwitcher = document.querySelector('.toggle-checkbox');
+
+// Check Switch
 unitSwitcher.addEventListener('click', () => {
     if (units === 'imperial') {
         units = 'metric';
@@ -27,18 +33,14 @@ unitSwitcher.addEventListener('click', () => {
     getCoords(currentCity);
 });
 
-if (units === 'metric') {
-    unitSwitcher.checked = true;
-}
-
-
-
-const getWeatherData = async (lat = currentCity.lat, lon = currentCity.lon) /* Default City = Annandale */ => {
+//TODO: Add foreign language support
+const getWeatherData = async (lat = 38.830391, lon = -77.196370) /* Default City = Annandale */ => {
     toggleLoad(true);
     const res = await fetch (
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`
     );
     const data = await res.json();
+    //console.log(data);
     toggleLoad(false);
     displayWeatherData(data);
 };
@@ -53,22 +55,23 @@ const displayWeatherData = (cityObject) => {
 }
 
 const getCoords = async (input) => {
-    localStorage.setItem('defaultCity', input);
-    currentCity = input;
     toggleLoad(true);
     const res = await fetch (
         `https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=${apiKey}`
     );
     const data = await res.json();
     toggleLoad(false);
-    //* Pick top choice if given multiple options
     console.log(data);
-    if (data.length > 1) {
-        getWeatherData(data[0].lat, data[0].lon);
-    } else {
-        getWeatherData(data.lat, data.lon);
+    if (!data || data.length === 0) {
+        //TODO: This alert is annoying, move to DOM
+        alert('Invalid Location!');
+        return;
     }
-    
+    localStorage.setItem('defaultCity', input);
+    currentCity = input;
+    //* Pick top choice
+    console.log(data);
+    getWeatherData(data[0].lat, data[0].lon);
 }
 
 function toggleLoad(isLoading) {
