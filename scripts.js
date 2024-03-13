@@ -54,6 +54,7 @@ const displayWeatherData = (cityObject) => {
 
 const getCoords = async (input) => {
     localStorage.setItem('defaultCity', input);
+    currentCity = input;
     toggleLoad(true);
     const res = await fetch (
         `https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=${apiKey}`
