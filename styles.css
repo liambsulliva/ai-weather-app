@@ -43,44 +43,21 @@ body {
     margin-top: 20px;
   }
 
-  @keyframes load-element {
-    0% { transform: translate(-50%,-50%) rotate(0deg); }
-    100% { transform: translate(-50%,-50%) rotate(360deg); }
-  }
-
-  .load-element div {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    border: 10px solid black;
-    border-top-color: transparent;
-    border-radius: 50%;
-  }
-
-  .load-element div {
-    animation: load-element 1s linear infinite;
-    top: 50px;
-    left: 50px
-  }
-
-  .loader {
-    margin-top: 20px;
-    width: 100px;
-    height: 100px;
-    display: inline-block;
-    overflow: hidden;
-  }
-
   .load-element {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform: translateZ(0) scale(1);
-    backface-visibility: hidden;
-    transform-origin: 0 0;
+    display: inline-block;
+    width: 96px;
+    height: 96px;
+    margin-top: 20px;
+    /* Via iconify :) */
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg stroke='%23000'%3E%3Ccircle cx='12' cy='12' r='9.5' fill='none' stroke-linecap='round' stroke-width='3'%3E%3Canimate attributeName='stroke-dasharray' calcMode='spline' dur='1.5s' keySplines='0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1' keyTimes='0;0.475;0.95;1' repeatCount='indefinite' values='0 150;42 150;42 150;42 150'/%3E%3Canimate attributeName='stroke-dashoffset' calcMode='spline' dur='1.5s' keySplines='0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1' keyTimes='0;0.475;0.95;1' repeatCount='indefinite' values='0;-16;-59;-59'/%3E%3C/circle%3E%3CanimateTransform attributeName='transform' dur='2s' repeatCount='indefinite' type='rotate' values='0 12 12;360 12 12'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
   }
-
-  .load-element div { box-sizing: content-box; }
   
   .city-name {
     font-size: 24px;

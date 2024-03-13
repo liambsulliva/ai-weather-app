@@ -48,16 +48,13 @@ const getCoords = async (input) => {
 
 function toggleLoad(isLoading) {
     const loadingElement = document.querySelector('.load-element');
-    const loader = document.querySelector('.loader');
     const weatherInfo = document.querySelector('.weather-info');
 
     if (isLoading) {
         loadingElement.style.display = 'block';
-        loader.style.display = 'inline-block';
         weatherInfo.style.display = 'none';
     } else {
         loadingElement.style.display = 'none';
-        loader.style.display = 'none';
         weatherInfo.style.display = 'block';
     }
 }
