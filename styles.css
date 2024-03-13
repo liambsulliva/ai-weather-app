@@ -53,7 +53,7 @@ body {
   }
 
   .search-btn:hover {
-    transform: translateY(-2px);
+    transform: scale(1.025);
   }
   
   .weather-info {
