@@ -38,7 +38,12 @@ const getCoords = async (input) => {
     toggleLoad(false);
     //* Pick top choice if given multiple options
     console.log(data);
-    getWeatherData(data[0].lat, data[0].lon);
+    if (data.length > 1) {
+        getWeatherData(data[0].lat, data[0].lon);
+    } else {
+        getWeatherData(data.lat, data.lon);
+    }
+    
 }
 
 function toggleLoad(isLoading) {
