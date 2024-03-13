@@ -11,10 +11,12 @@ const wind = document.querySelector('.wind-value');
 let units = 'imperial';
 
 const getWeatherData = async (lat = 38.830391, lon = -77.196370) /* Default City = Annandale */ => {
+    toggleLoad(true);
     const res = await fetch (
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`
     );
     const data = await res.json();
+    toggleLoad(false);
     displayWeatherData(data);
 };
 
@@ -28,10 +30,12 @@ const displayWeatherData = (cityObject) => {
 }
 
 const getCoords = async (input) => {
+    toggleLoad(true);
     const res = await fetch (
         `https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=${apiKey}`
     );
     const data = await res.json();
+    toggleLoad(false);
     //* Pick top choice if given multiple options
     console.log(data);
     if (data.length > 1) {
@@ -40,6 +44,22 @@ const getCoords = async (input) => {
         getWeatherData(data.lat, data.lon);
     }
     
+}
+
+function toggleLoad(isLoading) {
+    const loadingElement = document.querySelector('.load-element');
+    const loader = document.querySelector('.loader');
+    const weatherInfo = document.querySelector('.weather-info');
+
+    if (isLoading) {
+        loadingElement.style.display = 'block';
+        loader.style.display = 'inline-block';
+        weatherInfo.style.display = 'none';
+    } else {
+        loadingElement.style.display = 'none';
+        loader.style.display = 'none';
+        weatherInfo.style.display = 'block';
+    }
 }
 
 // Handle Form Input

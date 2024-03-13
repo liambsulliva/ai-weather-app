@@ -42,6 +42,45 @@ body {
   .weather-info {
     margin-top: 20px;
   }
+
+  @keyframes load-element {
+    0% { transform: translate(-50%,-50%) rotate(0deg); }
+    100% { transform: translate(-50%,-50%) rotate(360deg); }
+  }
+
+  .load-element div {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 10px solid black;
+    border-top-color: transparent;
+    border-radius: 50%;
+  }
+
+  .load-element div {
+    animation: load-element 1s linear infinite;
+    top: 50px;
+    left: 50px
+  }
+
+  .loader {
+    margin-top: 20px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .load-element {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0;
+  }
+
+  .load-element div { box-sizing: content-box; }
   
   .city-name {
     font-size: 24px;
