@@ -56,6 +56,10 @@ body {
   .search-btn:hover {
     transform: scale(1.025);
   }
+
+  .search-btn:active {
+    transform: scale(0.95);
+  }
   
   .weather-info {
     opacity: 1;
