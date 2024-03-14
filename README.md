@@ -17,13 +17,7 @@ This is a simple weather application built using HTML, CSS, and JavaScript. It a
 - OpenWeatherMap API
 
 ## Getting Started
-
-To run the application locally, follow these steps:
-
-1. Clone the repository or download the source code.
-2. Open the `index.html` file in a web browser.
-
-Alternatively, you can visit the live demo at [insert deployment link here].
+You can visit the live demo at https://weather.liambsullivan.com
 
 ## Usage
 
