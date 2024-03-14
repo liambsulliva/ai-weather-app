@@ -25,10 +25,3 @@ You can visit the live demo at https://weather.liambsullivan.com
 2. Click the "Search" button or press Enter.
 3. The app will display the current weather conditions for the specified city.
 4. Use the toggle switch to switch between Celsius and Fahrenheit units.
-
-## API Key
-
-This application uses the OpenWeatherMap API to fetch weather data. You need to obtain an API key from [OpenWeatherMap](https://openweathermap.org/) and replace the existing key in the `scripts.js` file with your own key.
-
-```javascript
-const apiKey = 'YOUR_API_KEY_HERE';
