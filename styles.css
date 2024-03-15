@@ -52,10 +52,12 @@ body {
     cursor: pointer;
     transition: transform 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
-
+  
+  /*
   .search-btn:hover {
     transform: scale(1.025);
   }
+  */
 
   .search-btn:active {
     transform: scale(0.95);
