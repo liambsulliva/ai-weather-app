@@ -44,7 +44,7 @@ const getWeatherData = async (lat = 38.830391, lon = -77.196370) /* Default City
         if (!data) {
             toggleLoad(true);
         }
-    }, 250);
+    }, 500);
     toggleLoad(false);
     displayWeatherData(data);
 };
@@ -87,7 +87,6 @@ const setWeatherIcon = (weather) => {
 };
 
 const getCoords = async (input) => {
-    
     const res = await fetch (
         `https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=${apiKey}`
     );
@@ -96,7 +95,7 @@ const getCoords = async (input) => {
         if (!data) {
             toggleLoad(true);
         }
-    }, 250);
+    }, 500);
     toggleLoad(false);
     if (!data || data.length === 0) {
         //TODO: This alert is annoying, move to DOM
