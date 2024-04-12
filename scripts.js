@@ -1,5 +1,5 @@
 // Free Student Tier ;)
-const apiKey = '9c69404b250eef98baee356685d95287';
+const apiKey = '733a3e89dcc439315c64910d4f4946fe';
 
 // Grab from DOM
 const weatherIcon = document.querySelector('.weather-icon');
