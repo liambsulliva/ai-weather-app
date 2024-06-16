@@ -1,31 +1,27 @@
 ## 👋 Introduction
 
-This is a sample authentication app built with NodeJS and Express, encrypted with bcrypt and stored in MongoDB. I will be using it as a template for authentication efforts in new backend projects.
+This is a small weather app project I made when learning about REST and async/await in JavaScript. It is fairly basic, but I plan to expand on its functionality in the future when I have the time to do so.
 
 ## 💻 Demo
 
-Check out the [Demo](https://liam-auth-app.adaptable.app), hosted on Adaptable.
+Check out the [Demo](https://weather.liambsullivan.com), hosted on GH-Pages.
 
 ## 💪 Features:
     
 - ✅ Mobile responsive
-- ✅ Encrypted Credentials
-- ✅ Form Validation
+- ✅ Fancy F to C toggle
+- ✅ Animated weather condition SVGs
+- ✅ Search by City
+- ✅ Temp, Humidity, Windspeed Readings
 
 ## 🛣️ Roadmap
 
 - ❌ Dark Mode Support
+- ❌ UV Index Reading, Feels Like
+- ❌ Restyle UI for readings
+- ❌ Hourly/Weekly Readings
+- ❌ Foreign Language Support (i18n)
 
 ## ⚙️ Stack
 
-- [**NodeJS + Express**](https://nodejs.org/) - A JavaScript library that allows JS to be used to build out the backend.
-- [**MongoDB**](https://mongodb.com) - A JavaScript library for building user interfaces.
-- [**Mongoose**](https://mongoosejs.com//) - An object modeling tool for MongoDB to make Node integration seamless.
-- [**Flowbite**](https://npmjs.com/package/bcrypt) - A tool to easily hash data before passing it into a given database.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-- `npm start`: Runs node development server with no listeners for local changes.
-- `npm devstart`: Runs nodemon development server with listeners for local changes.
+HTML, CSS, and Javascript! Nothing else.
