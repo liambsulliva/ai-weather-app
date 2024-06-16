@@ -11,18 +11,18 @@
     <div class="flex flex-row max-md:flex-col gap-36 max-md:gap-4 justify-between items-center">
       <div class="flex flex-col">
         <% if (data && data.name && data.state && data.country) { %>
-          <h1 class="font-semibold text-3xl"><%= data.name %></h1>
+          <h1 class="font-semibold md:text-3xl text-xl"><%= data.name %></h1>
           <h2><%= data.state + ', ' + data.country %></h2>
         <% } else if (data && data.name && data.country) { %>
-          <h1 class="font-semibold text-3xl"><%= data.name %></h1>
+          <h1 class="font-semibold md:text-3xl text-xl"><%= data.name %></h1>
           <h2><%= data.country %></h2>
         <% } else if (data && data.name) { %>
-          <h1 class="font-semibold text-3xl"><%= data.name %></h1>
+          <h1 class="font-semibold md:text-3xl text-xl"><%= data.name %></h1>
         <% } else { %>
-          <h1 class="font-semibold text-3xl">Weather</h1>
+          <h1 class="font-semibold md:text-3xl text-xl">Weather</h1>
         <% } %>
       </div>
-      <form action="/search" method="POST" class="flex flex-row w-3/5 gap-2">
+      <form action="/search" method="POST" class="flex flex-row w-3/5 max-md:w-fit gap-2">
         <input type="text" name="searchTerm" placeholder="Enter City" class="p-2.5 border border-gray-300 rounded flex-grow">
         <input type="submit" class="px-4 bg-blue-500 text-white border-none rounded cursor-pointer active:scale-95 transition-transform duration-100"></input>
       </form>
@@ -32,39 +32,43 @@
     <div class="flex flex-col px-8 py-4 pb-8 gap-2 bg-white rounded-lg h-full shadow-md flex-grow">
       <h2 class="font-medium text-xl">AI Overview</h2>
       <div class="bg-[#f9f9f9] px-4 py-2 rounded">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et sollicitudin orci, efficitur hendrerit eros. Nulla facilisi. Fusce vulputate felis in tincidunt pharetra. Proin lorem est, molestie at consequat quis, ultrices a eros. Cras non metus sed erat rhoncus pellentesque pellentesque in sem. Nulla facilisi. Quisque efficitur dui ac euismod.</p>
+        <% if (msg) { %>
+          <p><%= msg %></p>
+        <% } else { %>
+          <p>--</p>
+        <% } %>
       </div>
     </div>
-    <div class="flex flex-row gap-4">
+    <div class="flex flex-row gap-4 flex-wrap">
       <div class="flex flex-col gap-1 p-4 bg-white rounded-lg shadow-md flex-grow-0 max-md:flex-grow items-center justify-center">
         <div class="flex flex-row items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 32 32"><path fill="black" d="M16 5a3 3 0 0 0-3 3v9.975l-.333.298a5 5 0 1 0 6.666 0L19 17.975V8a3 3 0 0 0-3-3m-5 3a5 5 0 0 1 10 0v9.101a7 7 0 1 1-10 0zm4 4a1 1 0 1 1 2 0v7.17a3.001 3.001 0 1 1-2 0z"/></svg>
+          <svg class="md:w-4" xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 32 32"><path fill="black" d="M16 5a3 3 0 0 0-3 3v9.975l-.333.298a5 5 0 1 0 6.666 0L19 17.975V8a3 3 0 0 0-3-3m-5 3a5 5 0 0 1 10 0v9.101a7 7 0 1 1-10 0zm4 4a1 1 0 1 1 2 0v7.17a3.001 3.001 0 1 1-2 0z"/></svg>
           <% if (data && data.main && data.main.feels_like) { %>
-            <h2 class="text-3xl font-bold pr-3 text-nowrap"><%= data.main.feels_like %>° F</h2>
+            <h2 class="md:text-3xl text-xl font-bold pr-3 text-nowrap"><%= data.main.feels_like %>° F</h2>
           <% } else { %>
-            <h2 class="text-3xl font-bold pr-3 text-nowrap">--</h2>
+            <h2 class="md:text-3xl text-xl font-bold pr-3 text-nowrap">--</h2>
           <% } %>
         </div>
         <p class="text-nowrap">Feels Like</p>
       </div>
       <div class="flex flex-col gap-1 p-4 bg-white rounded-lg shadow-md flex-grow-0 max-md:flex-grow items-center justify-center">
         <div class="flex flex-row items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 512 512"><path fill="none" stroke="black" stroke-miterlimit="10" stroke-width="32" d="M400 320c0 88.37-55.63 144-144 144s-144-55.63-144-144c0-94.83 103.23-222.85 134.89-259.88a12 12 0 0 1 18.23 0C296.77 97.15 400 225.17 400 320Z"/><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M344 328a72 72 0 0 1-72 72"/></svg>
+          <svg class="md:w-4" xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 512 512"><path fill="none" stroke="black" stroke-miterlimit="10" stroke-width="32" d="M400 320c0 88.37-55.63 144-144 144s-144-55.63-144-144c0-94.83 103.23-222.85 134.89-259.88a12 12 0 0 1 18.23 0C296.77 97.15 400 225.17 400 320Z"/><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M344 328a72 72 0 0 1-72 72"/></svg>
           <% if (data && data.main && data.main.humidity) { %>
-            <h2 class="text-3xl font-bold pr-3 text-nowrap"><%= data.main.humidity %>%</h2>
+            <h2 class="md:text-3xl text-xl font-bold pr-3 text-nowrap"><%= data.main.humidity %>%</h2>
           <% } else { %>
-            <h2 class="text-3xl font-bold pr-3 text-nowrap">--</h2>
+            <h2 class="md:text-3xl text-xl font-bold pr-3 text-nowrap">--</h2>
           <% } %>
         </div>
         <p class="text-nowrap">Humidity</p>
       </div>
       <div class="flex flex-col gap-1 p-4 bg-white rounded-lg shadow-md flex-grow-0 max-md:flex-grow items-center justify-center">
         <div class="flex flex-row items-center gap-1">
-          <svg xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 256 256"><path fill="black" d="M184 184a32 32 0 0 1-32 32c-13.7 0-26.95-8.93-31.5-21.22a8 8 0 0 1 15-5.56C137.74 195.27 145 200 152 200a16 16 0 0 0 0-32H40a8 8 0 0 1 0-16h112a32 32 0 0 1 32 32m-64-80a32 32 0 0 0 0-64c-13.7 0-26.95 8.93-31.5 21.22a8 8 0 0 0 15 5.56C105.74 60.73 113 56 120 56a16 16 0 0 1 0 32H24a8 8 0 0 0 0 16Zm88-32c-13.7 0-26.95 8.93-31.5 21.22a8 8 0 0 0 15 5.56C193.74 92.73 201 88 208 88a16 16 0 0 1 0 32H32a8 8 0 0 0 0 16h176a32 32 0 0 0 0-64"/></svg>
+          <svg class="md:w-4" xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 256 256"><path fill="black" d="M184 184a32 32 0 0 1-32 32c-13.7 0-26.95-8.93-31.5-21.22a8 8 0 0 1 15-5.56C137.74 195.27 145 200 152 200a16 16 0 0 0 0-32H40a8 8 0 0 1 0-16h112a32 32 0 0 1 32 32m-64-80a32 32 0 0 0 0-64c-13.7 0-26.95 8.93-31.5 21.22a8 8 0 0 0 15 5.56C105.74 60.73 113 56 120 56a16 16 0 0 1 0 32H24a8 8 0 0 0 0 16Zm88-32c-13.7 0-26.95 8.93-31.5 21.22a8 8 0 0 0 15 5.56C193.74 92.73 201 88 208 88a16 16 0 0 1 0 32H32a8 8 0 0 0 0 16h176a32 32 0 0 0 0-64"/></svg>
           <% if (data && data.main && data.wind.speed) { %>
-            <h2 class="text-3xl font-bold pr-3 text-nowrap"><%= data.wind.speed %> MPH</h2>
+            <h2 class="md:text-3xl text-xl font-bold pr-3 text-nowrap"><%= data.wind.speed %> MPH</h2>
           <% } else { %>
-            <h2 class="text-3xl font-bold pr-3 text-nowrap">--</h2>
+            <h2 class="md:text-3xl text-xl font-bold pr-3 text-nowrap">--</h2>
           <% } %>
         </div>
         <p class="text-nowrap">Wind Speed</p>
@@ -101,9 +105,9 @@
         
                   
                   <% if (data && data.hourly[1]) { %>
-                    <td class="whitespace-no-wrap hidden py-4 text-3xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[1].main.temp %></td>
+                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[1].main.temp %></td>
                   <% } else { %>
-                    <td class="whitespace-no-wrap hidden py-4 text-3xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
+                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
                   <% } %>
         
                   
@@ -132,9 +136,9 @@
         
                   
                   <% if (data && data.hourly[2]) { %>
-                    <td class="whitespace-no-wrap hidden py-4 text-3xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[1].main.temp %></td>
+                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[1].main.temp %></td>
                   <% } else { %>
-                    <td class="whitespace-no-wrap hidden py-4 text-3xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
+                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
                   <% } %>
         
                   
@@ -163,9 +167,9 @@
         
                   
                   <% if (data && data.hourly[3]) { %>
-                    <td class="whitespace-no-wrap hidden py-4 text-3xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[1].main.temp %></td>
+                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[1].main.temp %></td>
                   <% } else { %>
-                    <td class="whitespace-no-wrap hidden py-4 text-3xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
+                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
                   <% } %>
         
                   

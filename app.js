@@ -1,10 +1,12 @@
 const express = require("express");
+const { OpenAI } = require('openai');
 const path = require("path");
 const session = require("express-session");
 const fetch = require("node-fetch");
 require('dotenv').config();
 
 const app = express();
+const openai = new OpenAI();
 const port = process.env.PORT | 3000;
 app.set("views", path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
@@ -15,7 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => {
-  res.render("index", { data: null });
+  res.render("index", { data: null, msg: null });
 });
 
 app.post('/search', async (req, res) => {
@@ -48,8 +50,16 @@ app.post('/search', async (req, res) => {
       units,
       hourly
     };
-    
-    res.render("index", { data: weatherData });
+
+    const completion = await openai.chat.completions.create({
+      messages: [
+        {"role": "system", "content": "You are a weather forecaster."},
+        {"role": "user", "content": `How should one prepare for the weather today? What should they wear, pack, or keep in mind? The JSON data for the local weather forecast is below. Talk as if you're on air for one person. 350 characters maximum. ${weatherData}`},
+      ],
+      model: "gpt-3.5-turbo",
+    });
+
+    res.render("index", { data: weatherData, msg: completion.choices[0].message.content });
   } catch (error) {
     console.error(error);
     res.redirect("/");
