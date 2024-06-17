@@ -84,140 +84,62 @@
           <div class="mt-6 overflow-hidden rounded-xl bg-[#f9f9f9]">
             <table class="">
               <thead class="hidden lg:table-header-group">
-                <tr class="">
-                  <td width="50%" class="whitespace-normal py-4 text-sm font-medium text-gray-500 text-nowrap sm:px-6">Time</td>
-        
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 text-nowrap sm:px-6">Temp</td>
-        
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 text-nowrap sm:px-6">Forecast</td>
-        
-                  <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 text-nowrap sm:px-6">Precipitation</td>
-                </tr>
+              <tr class="">
+                <td width="50%" class="whitespace-normal py-4 text-sm font-medium text-gray-500 text-nowrap sm:px-6">Time</td>
+          
+                <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 text-nowrap sm:px-6">Temp</td>
+          
+                <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 text-nowrap sm:px-6">Forecast</td>
+          
+                <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 text-nowrap sm:px-6">Precipitation</td>
+              </tr>
               </thead>
-        
+          
               <tbody class="lg:border-gray-300">
-                <tr class="">
-                  <td width="50%" class="whitespace-no-wrap py-4 text-sm font-semibold text-gray-600 sm:px-6">
-                    <% if (data && data.hourly[1] && data.hourly[1].dt_txt) { %>
-                      <%= data.hourly[1].dt_txt %>
+              <% if (data && data.hourly) { %>
+                <% data.hourly.map((hour, index) => { %>
+                  <tr class="">
+                    <td width="50%" class="whitespace-no-wrap py-4 text-sm font-semibold text-gray-600 sm:px-6">
+                      <% if (hour && hour.dt_txt) { %>
+                        <%= hour.dt_txt %>
+                      <% } else { %>
+                        --
+                      <% } %>
+                      <div class="mt-1 lg:hidden">
+                        <p class="font-normal text-gray-500">--</p>
+                      </div>
+                    </td>
+
+                    <% if (hour && hour.main && hour.main.temp) { %>
+                      <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= hour.main.temp %></td>
                     <% } else { %>
-                      10am
+                      <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
                     <% } %>
-                    <div class="mt-1 lg:hidden">
-                      <p class="font-normal text-gray-500">--</p>
-                    </div>
-                  </td>
-        
-                  
-                  <% if (data && data.hourly[1] && data.hourly[1].main && data.hourly[1].main.temp) { %>
-                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[1].main.temp %></td>
-                  <% } else { %>
-                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
-                  <% } %>
-        
-                  
-                  <% if (data && data.hourly[1] && data.hourly[1].weather && data.hourly[1].weather.main) { %>
-                    <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
-                      <%= data.hourly[1].weather.main %>
-                    </td>
-                  <% } else { %>
-                    <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
-                      --
-                    </td>
-                  <% } %>
-        
-                  <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    <% if (data && data.hourly[3] && data.hourly[3].weather && data.hourly[3].weather.main) { %>
+
+                    <% if (hour && hour.weather && hour.weather.main) { %>
                       <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
-                        <%= data.hourly[3].weather.main %>
+                        <%= hour.weather.main %>
                       </td>
                     <% } else { %>
-                      <div class="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">N/A</div>
-                    <% } %>
-                  </td>
-                </tr>
-        
-                <tr class="">
-                  <td width="50%" class="whitespace-no-wrap py-4 text-sm font-semibold text-gray-600 sm:px-6">
-                    <% if (data && data.hourly[2] && data.hourly[2].dt_txt) { %>
-                      <%= data.hourly[2].dt_txt %>
-                    <% } else { %>
-                      11am
-                    <% } %>
-                    <div class="mt-1 lg:hidden">
-                      <p class="font-normal text-gray-500">--</p>
-                    </div>
-                  </td>
-        
-                  
-                  <% if (data && data.hourly[2] && data.hourly[2].main && data.hourly[2].main.temp) { %>
-                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[2].main.temp %></td>
-                  <% } else { %>
-                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
-                  <% } %>
-        
-                  
-                  <% if (data && data.hourly[2] && data.hourly[2].weather && data.hourly[2].weather.main) { %>
-                    <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
-                      <%= data.hourly[2].weather.main %>
-                    </td>
-                  <% } else { %>
-                    <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
-                      --
-                    </td>
-                  <% } %>
-        
-                  <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    <% if (data && data.hourly[3] && data.hourly[3].weather && data.hourly[3].weather.main) { %>
                       <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
-                        <%= data.hourly[3].weather.main %>
+                        --
                       </td>
-                    <% } else { %>
-                      <div class="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">N/A</div>
                     <% } %>
-                  </td>
-                </tr>
-        
-                <tr class="">
-                  <td width="50%" class="whitespace-no-wrap py-4 text-sm font-semibold text-gray-600 sm:px-6">
-                    <% if (data && data.hourly[3] && data.hourly[3].dt_txt) { %>
-                      <%= data.hourly[3].dt_txt %>
-                    <% } else { %>
-                      12pm
-                    <% } %>
-                    <div class="mt-1 lg:hidden">
-                      <p class="font-normal text-gray-500">--</p>
-                    </div>
-                  </td>
-        
-                  
-                  <% if (data && data.hourly[3] && data.hourly[3].main && data.hourly[3].main.temp) { %>
-                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[3].main.temp %></td>
-                  <% } else { %>
-                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
-                  <% } %>
-        
-                  
-                  <% if (data && data.hourly[3] && data.hourly[3].weather && data.hourly[3].weather.main) { %>
-                    <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
-                      <%= data.hourly[3].weather.main %>
+
+                    <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+                      <% if (data && data.hourly[index + 3] && data.hourly[index + 3].weather && data.hourly[index + 3].weather.main) { %>
+                        <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
+                          <%= data.hourly[index + 3].weather.main %>
+                        </td>
+                      <% } else { %>
+                        <div class="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">N/A</div>
+                      <% } %>
                     </td>
-                  <% } else { %>
-                    <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
-                      --
-                    </td>
-                  <% } %>
-                  <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    <% if (data && data.hourly[3] && data.hourly[3].weather && data.hourly[3].weather.main) { %>
-                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
-                        <%= data.hourly[3].weather.main %>
-                      </td>
-                    <% } else { %>
-                      <div class="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">N/A</div>
-                    <% } %>
-                  </td>
-                </tr>
+                  </tr>
+                <% }) %>
+              <% } %>
               </tbody>
+            </table>
             </table>
           </div>
         </div>
