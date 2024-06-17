@@ -40,7 +40,7 @@ app.post('/search', async (req, res) => {
 
     const response3 = await fetch(`${baseUrl}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`);
     const data3 = await response3.json();
-    const hourly = data3.list;
+    const hourly = data3.list.slice(0, 6);
 
     const weatherData = {
       name,
@@ -54,7 +54,7 @@ app.post('/search', async (req, res) => {
 
     const completion = await openai.chat.completions.create({
       messages: [
-        {"role": "system", "content": "You are a weather forecaster."},
+        {"role": "system", "content": "You are a weather forecaster that responds in natural language."},
         {"role": "user", "content": `How should one prepare for the weather today? What should they wear, pack, or keep in mind? The JSON data for the local weather forecast is below. Talk as if you're on air for one person. 350 characters maximum. ${weatherData}`},
       ],
       model: "gpt-3.5-turbo",
