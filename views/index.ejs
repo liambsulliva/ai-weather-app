@@ -6,7 +6,7 @@
   <title>Weather App</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="font-sans bg-gray-100 flex flex-col gap-4 p-8 items-center h-screen max-w-[1200px] mx-auto" style="width: calc(100vw - 2em)">
+<body class="font-sans bg-gray-100 flex flex-col gap-4 p-8 items-center h-screen max-w-[1200px] mx-auto" style="width: calc(100vw - 1em)">
   <div class="px-8 py-4 bg-white rounded-lg shadow-md w-full">
     <div class="flex flex-row max-md:flex-col gap-36 max-md:gap-4 justify-between items-center">
       <div class="flex flex-col">
@@ -77,8 +77,8 @@
     </div>
   </div>
   <div class="flex flex-row max-md:flex-col gap-4 w-full h-full">
-    <div class="flex flex-col px-8 py-4 bg-white rounded-lg h-full shadow-md justify-start flex-grow">
-      <h2 class="font-medium text-xl">2:3 Forecast</h2>
+    <div class="flex flex-col px-8 max-md:px-2 py-4 bg-white rounded-lg h-full shadow-md justify-start flex-grow">
+      <h2 class="font-medium text-xl pl-4">2:3 Forecast</h2>
       <div class="pb-4">
         <div class="mt-8 max-w-screen-lg px-2">    
           <div class="mt-6 p-2 overflow-hidden rounded-xl bg-[#f9f9f9]">
@@ -98,7 +98,7 @@
               <% if (data && data.hourly) { %>
                 <% data.hourly.map((hour, index) => { %>
                   <tr class="">
-                    <td width="50%" class="whitespace-no-wrap py-4 text-sm font-semibold text-gray-600 sm:px-6">
+                    <td width="50%" class="whitespace-no-wrap py-4 text-sm text-nowrap font-semibold text-gray-600 sm:px-6">
                       <% if (hour && hour.dt_txt) { %>
                         <% const dt = new Date(hour.dt_txt); %>
                         <% const time = dt.toLocaleTimeString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' }); %>
@@ -111,15 +111,15 @@
                     <% if (hour && hour.main && hour.main.temp) { %>
                       <td class="whitespace-no-wrap py-4 md:text-3xl text-xl text-nowrap font-bold sm:px-6 lg:table-cell"><%= hour.main.temp %>° F</td>
                     <% } else { %>
-                      <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold sm:px-6 lg:table-cell">--</td>
+                      <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl text-nowrap font-bold sm:px-6 lg:table-cell">--</td>
                     <% } %>
 
                     <% if (hour && hour.weather[0] && hour.weather[0].main) { %>
-                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-md font-semibold lg:text-left">
+                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-md text-nowrap font-semibold lg:text-left">
                         <%= hour.weather[0].main %>
                       </td>
                     <% } else { %>
-                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-md font-semibold lg:text-left">
+                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-md text-nowrap font-semibold lg:text-left">
                         --
                       </td>
                     <% } %>
