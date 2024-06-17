@@ -81,7 +81,7 @@
       <h2 class="font-medium text-xl">2:3 Forecast</h2>
       <div class="pb-4">
         <div class="mt-8 max-w-screen-lg px-2">    
-          <div class="mt-6 overflow-hidden rounded-xl bg-[#f9f9f9]">
+          <div class="mt-6 p-2 overflow-hidden rounded-xl bg-[#f9f9f9]">
             <table class="">
               <thead class="hidden lg:table-header-group">
               <tr class="">
@@ -100,27 +100,26 @@
                   <tr class="">
                     <td width="50%" class="whitespace-no-wrap py-4 text-sm font-semibold text-gray-600 sm:px-6">
                       <% if (hour && hour.dt_txt) { %>
-                        <%= hour.dt_txt %>
-                      <% } else { %>
+                        <% const dt = new Date(hour.dt_txt); %>
+                        <% const time = dt.toLocaleTimeString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' }); %>
+                        <%= time %>
+                        <% } else { %>
                         --
-                      <% } %>
-                      <div class="mt-1 lg:hidden">
-                        <p class="font-normal text-gray-500">--</p>
-                      </div>
+                      <% } %>                      
                     </td>
 
                     <% if (hour && hour.main && hour.main.temp) { %>
-                      <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl text-nowrap font-bold sm:px-6 lg:table-cell"><%= hour.main.temp %>° F</td>
+                      <td class="whitespace-no-wrap py-4 md:text-3xl text-xl text-nowrap font-bold sm:px-6 lg:table-cell"><%= hour.main.temp %>° F</td>
                     <% } else { %>
                       <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold sm:px-6 lg:table-cell">--</td>
                     <% } %>
 
                     <% if (hour && hour.weather[0] && hour.weather[0].main) { %>
-                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-semibold lg:text-left">
+                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-md font-semibold lg:text-left">
                         <%= hour.weather[0].main %>
                       </td>
                     <% } else { %>
-                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-semibold lg:text-left">
+                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-md font-semibold lg:text-left">
                         --
                       </td>
                     <% } %>
