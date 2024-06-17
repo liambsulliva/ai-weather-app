@@ -38,6 +38,7 @@
           <p>--</p>
         <% } %>
       </div>
+      <p class="text-xs p-1">AI can make mistakes. Double check its output if possible.</p>
     </div>
     <div class="flex flex-row gap-4 max-md:flex-wrap">
       <div class="flex flex-col gap-1 p-4 bg-white rounded-lg shadow-md flex-grow-0 max-md:flex-grow items-center justify-center">
@@ -97,7 +98,7 @@
               <tbody class="lg:border-gray-300">
                 <tr class="">
                   <td width="50%" class="whitespace-no-wrap py-4 text-sm font-semibold text-gray-600 sm:px-6">
-                    <% if (data && data.hourly[1]) { %>
+                    <% if (data && data.hourly[1] && data.hourly[1].dt_txt) { %>
                       <%= data.hourly[1].dt_txt %>
                     <% } else { %>
                       10am
@@ -108,14 +109,14 @@
                   </td>
         
                   
-                  <% if (data && data.hourly[1]) { %>
+                  <% if (data && data.hourly[1] && data.hourly[1].main && data.hourly[1].main.temp) { %>
                     <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[1].main.temp %></td>
                   <% } else { %>
                     <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
                   <% } %>
         
                   
-                  <% if (data && data.hourly[1]) { %>
+                  <% if (data && data.hourly[1] && data.hourly[1].weather && data.hourly[1].weather.main) { %>
                     <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
                       <%= data.hourly[1].weather.main %>
                     </td>
@@ -126,13 +127,19 @@
                   <% } %>
         
                   <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    <div class="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">N/A</div>
+                    <% if (data && data.hourly[3] && data.hourly[3].weather && data.hourly[3].weather.main) { %>
+                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
+                        <%= data.hourly[3].weather.main %>
+                      </td>
+                    <% } else { %>
+                      <div class="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">N/A</div>
+                    <% } %>
                   </td>
                 </tr>
         
                 <tr class="">
                   <td width="50%" class="whitespace-no-wrap py-4 text-sm font-semibold text-gray-600 sm:px-6">
-                    <% if (data && data.hourly[2]) { %>
+                    <% if (data && data.hourly[2] && data.hourly[2].dt_txt) { %>
                       <%= data.hourly[2].dt_txt %>
                     <% } else { %>
                       11am
@@ -143,14 +150,14 @@
                   </td>
         
                   
-                  <% if (data && data.hourly[2]) { %>
-                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[1].main.temp %></td>
+                  <% if (data && data.hourly[2] && data.hourly[2].main && data.hourly[2].main.temp) { %>
+                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[2].main.temp %></td>
                   <% } else { %>
                     <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
                   <% } %>
         
                   
-                  <% if (data && data.hourly[2]) { %>
+                  <% if (data && data.hourly[2] && data.hourly[2].weather && data.hourly[2].weather.main) { %>
                     <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
                       <%= data.hourly[2].weather.main %>
                     </td>
@@ -161,13 +168,19 @@
                   <% } %>
         
                   <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    <div class="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">N/A</div>
+                    <% if (data && data.hourly[3] && data.hourly[3].weather && data.hourly[3].weather.main) { %>
+                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
+                        <%= data.hourly[3].weather.main %>
+                      </td>
+                    <% } else { %>
+                      <div class="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">N/A</div>
+                    <% } %>
                   </td>
                 </tr>
         
                 <tr class="">
                   <td width="50%" class="whitespace-no-wrap py-4 text-sm font-semibold text-gray-600 sm:px-6">
-                    <% if (data && data.hourly[3]) { %>
+                    <% if (data && data.hourly[3] && data.hourly[3].dt_txt) { %>
                       <%= data.hourly[3].dt_txt %>
                     <% } else { %>
                       12pm
@@ -178,14 +191,14 @@
                   </td>
         
                   
-                  <% if (data && data.hourly[3]) { %>
-                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[1].main.temp %></td>
+                  <% if (data && data.hourly[3] && data.hourly[3].main && data.hourly[3].main.temp) { %>
+                    <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell"><%= data.hourly[3].main.temp %></td>
                   <% } else { %>
                     <td class="whitespace-no-wrap hidden py-4 md:text-3xl text-xl font-bold text-gray-500 sm:px-6 lg:table-cell">--</td>
                   <% } %>
         
                   
-                  <% if (data && data.hourly[3]) { %>
+                  <% if (data && data.hourly[3] && data.hourly[3].weather && data.hourly[3].weather.main) { %>
                     <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
                       <%= data.hourly[3].weather.main %>
                     </td>
@@ -194,9 +207,14 @@
                       --
                     </td>
                   <% } %>
-        
                   <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                    <div class="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">N/A</div>
+                    <% if (data && data.hourly[3] && data.hourly[3].weather && data.hourly[3].weather.main) { %>
+                      <td class="whitespace-no-wrap py-4 px-6 text-right md:text-3xl text-xl font-bold text-gray-500 lg:text-left">
+                        <%= data.hourly[3].weather.main %>
+                      </td>
+                    <% } else { %>
+                      <div class="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">N/A</div>
+                    <% } %>
                   </td>
                 </tr>
               </tbody>
