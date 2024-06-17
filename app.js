@@ -1,6 +1,7 @@
 const express = require("express");
 const { OpenAI } = require('openai');
 const path = require("path");
+const favicon = require('serve-favicon');
 const session = require("express-session");
 const fetch = require("node-fetch");
 require('dotenv').config();
@@ -13,7 +14,7 @@ app.set("view engine", "ejs");
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(express.urlencoded({ extended: false }));
-
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => {
@@ -58,7 +59,7 @@ app.post('/search', async (req, res) => {
       ],
       model: "gpt-3.5-turbo",
     });
-
+    //res.json(weatherData);
     res.render("index", { data: weatherData, msg: completion.choices[0].message.content });
   } catch (error) {
     console.error(error);
