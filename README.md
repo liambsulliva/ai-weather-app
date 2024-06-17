@@ -16,8 +16,10 @@ Check out the [Demo](https://weather-app.adaptable.app), hosted on Adaptable.io
 ## 🛣️ Roadmap
 
 - ❌ Dark Mode Support
+- ❌ F to C conversion
 - ❌ Current Temp, UV Readings
 - ❌ Sort Hourly data into tabs by day
+- ❌ Full 5-Day forecast
 - ❌ Search Suggestions
 - ❌ Animation on page change (Typing indicator for ChatGPT)
 - ❌ Foreign Language Support (i18n)
