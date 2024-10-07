@@ -4,10 +4,10 @@ This is a Node + Express project that reports on weather data gathered from the 
 
 ## 💻 Demo
 
-Check out the [Demo](https://weather-app.adaptable.app), hosted on Adaptable.io
+Check out the [Demo](https://ai-weather-app-ytsg.onrender.com), hosted on Render.
 
 ## 💪 Features:
-    
+
 - ✅ Mobile responsive
 - ✅ Search by City
 - ✅ Feels Like, Temp, Humidity, Windspeed Readings
